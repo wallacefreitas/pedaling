@@ -1,8 +1,8 @@
 export interface UserProps {
-  id?: string
+  id: string
   name: string
   email: string
-  createdAt?: Date
+  createdAt: Date
 }
 
 export class User {

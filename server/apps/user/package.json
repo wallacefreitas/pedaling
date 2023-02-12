@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only src/server.ts"
+    "dev": "tsnd --respawn --transpile-only src/server.ts",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,5 @@
 import { User } from "../entities/user";
 import { PrismaUsersRepository } from "../repositories/prisma/prisma-users-repository";
-import { UsersRepository } from "../repositories/users-repository";
 
 type FindAllUsersResponse = User[]
 
