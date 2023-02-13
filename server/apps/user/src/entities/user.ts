@@ -13,7 +13,7 @@ export class User {
   constructor(props: UserProps) {
     const userSchema = z.object({
       id: z.string().uuid(),
-      name: z.string(),
+      name: z.string().min(1),
       email: z.string().email(),
       createdAt: z.date()
     })

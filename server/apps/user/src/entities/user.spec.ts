@@ -24,3 +24,14 @@ test('user email validation', () => {
 
   expect(() => new User(user)).toThrow(new Error('Invalid email'))
 })
+
+test('empty name validation', () => {
+  const user = {
+    id: randomUUID(),
+    name: '',
+    email: 'johndoe@email.com',
+    createdAt: new Date()
+  }
+
+  expect(() => new User(user)).toThrow(new Error('String must contain at least 1 character(s)'))
+})
