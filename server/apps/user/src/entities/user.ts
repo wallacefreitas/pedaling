@@ -1,3 +1,5 @@
+import { z, ZodError } from 'zod';
+
 export interface UserProps {
   id: string
   name: string
@@ -9,7 +11,25 @@ export class User {
   private props: UserProps
 
   constructor(props: UserProps) {
-    this.props = props
+    const userSchema = z.object({
+      id: z.string().uuid(),
+      name: z.string(),
+      email: z.string().email(),
+      createdAt: z.date()
+    })
+
+    try {
+      const user = userSchema.parse(props)
+      this.props = user;
+
+    } catch(err) {
+
+      if (err instanceof ZodError) {
+        err.errors.map(error => { throw new Error(error.message) } )
+      }
+
+      throw new Error("Unknown error")
+    }
   }
 
   get id() {
