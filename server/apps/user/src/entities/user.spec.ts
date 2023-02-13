@@ -15,23 +15,21 @@ test('create an user', () => {
 })
 
 test('user email validation', () => {
-  const user = {
+  expect(() => new User({
     id: randomUUID(),
     name: 'John Doe',
     email: 'johndoe',
     createdAt: new Date()
-  }
-
-  expect(() => new User(user)).toThrow(new Error('Invalid email'))
+  }))
+  .toThrow(new Error('Invalid email'))
 })
 
 test('empty name validation', () => {
-  const user = {
+  expect(() => new User({
     id: randomUUID(),
     name: '',
     email: 'johndoe@email.com',
     createdAt: new Date()
-  }
-
-  expect(() => new User(user)).toThrow(new Error('String must contain at least 1 character(s)'))
+  }))
+  .toThrow(new Error('String must contain at least 1 character(s)'))
 })
