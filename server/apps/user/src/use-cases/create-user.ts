@@ -18,7 +18,7 @@ export class CreateUser {
   async execute({ id, name, email, createdAt }: CreateUserRequest): Promise<CreateUserResponse> {
     const userExists = await this.usersRepository.findByEmail(email);
 
-    if (userExists) {
+    if (userExists !== null) {
       throw new Error('Another user this email')
     }
 

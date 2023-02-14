@@ -51,4 +51,8 @@ export class User {
   set email(email: string) {
     this.props.email = email
   }
+
+  get createdAt() {
+    return this.props.createdAt
+  }
 }
