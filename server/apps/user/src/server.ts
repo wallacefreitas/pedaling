@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { User } from "./core/entities/user"
+import { User } from "./application/entities/user"
 
 const express = require('express')
 const app = express()
