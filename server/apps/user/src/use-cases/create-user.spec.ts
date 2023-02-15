@@ -12,10 +12,8 @@ describe('Create User', () => {
     )
 
     expect(createUser.execute({
-      id: randomUUID(),
       name: 'John Doe',
       email: 'johndoe@email.com',
-      createdAt: new Date()
     })).resolves.toBeInstanceOf(User)
   })
 
@@ -26,17 +24,13 @@ describe('Create User', () => {
     )
 
     await createUser.execute({
-      id: randomUUID(),
       name: 'John Doe',
       email: 'johndoe@email.com',
-      createdAt: new Date()
     })
 
     expect(createUser.execute({
-      id: randomUUID(),
       name: 'Mary Jane',
       email: 'johndoe@email.com',
-      createdAt: new Date()
     })).rejects.toBeInstanceOf(Error)
   })
 })

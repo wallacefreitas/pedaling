@@ -1,10 +1,10 @@
+import { randomUUID } from 'node:crypto';
 import { z, ZodError } from 'zod';
 
 export interface UserProps {
-  id: string
+  id?: string
   name: string
   email: string
-  createdAt: Date
 }
 
 export class User {
@@ -15,8 +15,11 @@ export class User {
       id: z.string().uuid(),
       name: z.string().min(1),
       email: z.string().email(),
-      createdAt: z.date()
     })
+
+    if (!props.id) {
+      props.id = randomUUID()
+    }
 
     try {
       const user = userSchema.parse(props)
@@ -50,9 +53,5 @@ export class User {
 
   set email(email: string) {
     this.props.email = email
-  }
-
-  get createdAt() {
-    return this.props.createdAt
   }
 }

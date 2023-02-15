@@ -15,7 +15,7 @@ export class PrismaUsersRepository implements UserRepository {
         id: user!.id,
         name: user!.name,
         email: user!.email,
-        createdAt: user!.createdAt
+        createdAt: new Date()
       }
     });
   }

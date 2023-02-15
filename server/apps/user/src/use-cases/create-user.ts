@@ -2,10 +2,8 @@ import { User } from "../entities/user";
 import { UserRepository } from "../repositories/users-repository";
 
 interface CreateUserRequest {
-  id: string;
   name: string;
   email: string;
-  createdAt: Date;
 }
 
 type CreateUserResponse = User
@@ -15,18 +13,16 @@ export class CreateUser {
     private usersRepository: UserRepository
   ){}
 
-  async execute({ id, name, email, createdAt }: CreateUserRequest): Promise<CreateUserResponse> {
-    const userExists = await this.usersRepository.findByEmail(email);
+  async execute({ name, email }: CreateUserRequest): Promise<CreateUserResponse> {
+    const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
-    if (userExists !== null) {
-      throw new Error('Another user this email')
+    if (userAlreadyExists) {
+      throw new Error('User already exists')
     }
 
     const user = new User({
-      id,
       name,
-      email,
-      createdAt
+      email
     })
 
     await this.usersRepository.create(user)
