@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { describe, expect, it } from "vitest";
 import { User } from "../entities/user";
-import { InMemoryUsersRepository } from "../repositories/in-memory/in-memory-users-repository";
+import { InMemoryUsersRepository } from "../../infra/repositories/in-memory/in-memory-users-repository";
 import { CreateUser } from "./create-user";
 
 describe('Create User', () => {
