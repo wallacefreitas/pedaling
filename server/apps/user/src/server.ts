@@ -1,13 +1,11 @@
-import { Request, Response } from "express"
-import { User } from "./application/entities/user"
+import express from 'express';
+import { router } from "./routes"
 
-const express = require('express')
 const app = express()
 const port = 3001
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World Teste!')
-})
+app.use(express.json())
+app.use(router)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

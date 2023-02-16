@@ -1,5 +1,5 @@
-import { User } from "../entities/user";
-import { UserRepository } from "../repositories/users-repository";
+import { User } from "../../entities/user";
+import { UserRepository } from "../../repositories/users-repository";
 
 interface CreateUserRequest {
   name: string;
