@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { User } from "../../entities/user";
-import { UserRepository } from "../users-repository";
+import { User } from "../../../application/entities/user";
+import { UserRepository } from "../../../application/repositories/users-repository";
 
 export class PrismaUsersRepository implements UserRepository {
   public users: User[] = []
@@ -18,6 +18,10 @@ export class PrismaUsersRepository implements UserRepository {
         createdAt: new Date()
       }
     });
+  }
+
+  async save(user: User): Promise<void> {
+    
   }
   
   async findByEmail(email: string): Promise<User | null> {
