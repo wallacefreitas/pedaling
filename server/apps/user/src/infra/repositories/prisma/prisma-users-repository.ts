@@ -21,7 +21,15 @@ export class PrismaUsersRepository implements UserRepository {
   }
 
   async save(user: User): Promise<void> {
-    
+    await this.prisma.user.update({
+      data: {
+        name: user.name,
+        email: user.email
+      },
+      where: {
+        id: user.id
+      }
+    })
   }
   
   async findByEmail(email: string): Promise<User | null> {
