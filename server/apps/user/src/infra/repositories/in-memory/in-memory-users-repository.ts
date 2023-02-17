@@ -11,6 +11,14 @@ export class InMemoryUsersRepository implements UserRepository {
   async save(user: User): Promise<void> {
     
   }
+
+  async findAll(): Promise<User[] | null> {
+    return []
+  }
+
+  async findById(id: string): Promise<User | null> {
+    return null
+  }
   
   async findByEmail(email: string): Promise<User | null> {
     return this.users.find(user => user.email === email) || null
