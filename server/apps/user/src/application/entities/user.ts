@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { z, ZodError } from 'zod';
 
 export interface UserProps {
-  id?: string
+  id: string
   name: string
   email: string
 }

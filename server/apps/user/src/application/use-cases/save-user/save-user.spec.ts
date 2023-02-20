@@ -25,10 +25,8 @@ describe('Save User', () => {
       email: 'maryann@email.com',
     })
 
-    expect(saveUser.execute({
-      id: user2.id || '',
-      name: 'Mary Test',
-      email: 'maryann@email.com',
-    })).resolves.toBeInstanceOf(User)
+    user2.name = 'Mary Test'
+
+    expect(saveUser.execute(user2)).resolves.toBeInstanceOf(User)
   })
 })
