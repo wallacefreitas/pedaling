@@ -4,20 +4,21 @@ import { UserRepository } from "../../../application/repositories/users-reposito
 export class InMemoryUsersRepository implements UserRepository {
   public users: User[] = []
   
-  async create(user: User): Promise<void> {
+  async create(user: User): Promise<User> {
     this.users.push(user);
+    return new User(user);
   }
 
   async save(user: User): Promise<void> {
     return this.users.filter( data => data.id === user.id ).forEach( data => data = user )
   }
 
-  async findAll(): Promise<User[] | null> {
-    return []
+  async findUnique(id?: string): Promise<User | null> {
+    return this.users.find(user => user.id === id) || null
   }
 
-  async findById(id: string): Promise<User | null> {
-    return null
+  async findMany(): Promise<User[]> {
+    return this.users
   }
   
   async findByEmail(email: string): Promise<User | null> {

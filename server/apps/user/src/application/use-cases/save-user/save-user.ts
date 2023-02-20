@@ -2,6 +2,7 @@ import { User } from "../../entities/user";
 import { UserRepository } from "../../repositories/users-repository";
 
 interface SaveUserRequest {
+  id: string;
   name: string;
   email: string;
 }
@@ -13,14 +14,15 @@ export class SaveUser {
     private usersRepository: UserRepository
   ){}
 
-  async execute({ name, email }: SaveUserRequest): Promise<SaveUserResponse> {
-    const userAlreadyExists = await this.usersRepository.findByEmail(email);
+  async execute({ id, name, email }: SaveUserRequest): Promise<SaveUserResponse> {
+    const userAlreadyExists = await this.usersRepository.findUnique(id);
 
     if (!userAlreadyExists) {
       throw new Error('User not exists')
     }
 
     const user = new User({
+      id,
       name,
       email
     })

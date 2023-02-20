@@ -15,17 +15,18 @@ describe('Save User', () => {
       usersRepository
     )
 
-    await createUser.execute({
+    const user1 = await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@email.com',
     })
 
-    await createUser.execute({
+    const user2 = await createUser.execute({
       name: 'Mary Ann',
       email: 'maryann@email.com',
     })
 
     expect(saveUser.execute({
+      id: user2.id || '',
       name: 'Mary Test',
       email: 'maryann@email.com',
     })).resolves.toBeInstanceOf(User)

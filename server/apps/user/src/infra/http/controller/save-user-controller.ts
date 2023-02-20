@@ -1,21 +1,23 @@
 import { Request, Response } from "express";
-import { CreateUser } from "../../../application/use-cases/create-user/create-user";
+import { SaveUser } from "../../../application/use-cases/save-user/save-user";
 
-export class CreateUserController {
+export class SaveUserController {
   constructor(
-    private createUserUseCase: CreateUser
+    private saveUserUseCase: SaveUser
   ){}
 
   async handle(request: Request, response: Response): Promise<Response> {
+    const id = request.params.id
     const { name, email } = request.body
 
     try {
-      const user = await this.createUserUseCase.execute({
+      await this.saveUserUseCase.execute({
+        id,
         name,
         email
       })
 
-      return response.status(201).json(user);
+      return response.status(201).send();
     } catch (err: any) {
       return response.status(400).json({
         message: err.message || 'Unexpected error.'

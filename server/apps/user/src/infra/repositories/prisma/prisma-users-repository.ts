@@ -9,7 +9,9 @@ export class PrismaUsersRepository implements UserRepository {
     private prisma = new PrismaClient()
   ){}
 
-  async create(user: User): Promise<void> {
+  async create(user: User): Promise<User> {
+    const newUser = new User(user);
+
     await this.prisma.user.create({
       data: {
         id: user!.id,
@@ -18,6 +20,8 @@ export class PrismaUsersRepository implements UserRepository {
         createdAt: new Date()
       }
     });
+
+    return newUser
   }
 
   async save(user: User): Promise<void> {
@@ -32,12 +36,7 @@ export class PrismaUsersRepository implements UserRepository {
     })
   }
 
-  async findAll(): Promise<User[] | null> {
-    const users = await this.prisma.user.findMany()
-    return users.map( user => new User(user))
-  }
-
-  async findById(id: string): Promise<User | null> {
+  async findUnique(id: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
       where: {
         id
@@ -51,7 +50,12 @@ export class PrismaUsersRepository implements UserRepository {
 
     return null
   }
-  
+
+  async findMany(): Promise<User[]> {
+    const users = await this.prisma.user.findMany()
+    return users.map( user => new User(user))
+  }
+
   async findByEmail(email: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
       where: {
