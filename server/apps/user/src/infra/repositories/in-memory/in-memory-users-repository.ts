@@ -3,13 +3,13 @@ import { UserRepository } from "../../../application/repositories/users-reposito
 
 export class InMemoryUsersRepository implements UserRepository {
   public users: User[] = []
-
+  
   async create(user: User): Promise<void> {
     this.users.push(user);
   }
 
   async save(user: User): Promise<void> {
-    
+    return this.users.filter( data => data.id === user.id ).forEach( data => data = user )
   }
 
   async findAll(): Promise<User[] | null> {
