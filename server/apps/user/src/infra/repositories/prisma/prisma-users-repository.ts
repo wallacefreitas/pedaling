@@ -36,6 +36,10 @@ export class PrismaUsersRepository implements UserRepository {
     })
   }
 
+  async remove(id: string): Promise<void> {
+    
+  }
+
   async findUnique(id: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
       where: {

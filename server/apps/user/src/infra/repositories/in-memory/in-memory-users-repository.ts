@@ -13,6 +13,10 @@ export class InMemoryUsersRepository implements UserRepository {
     return this.users.filter( data => data.id === user.id ).forEach( data => data = user )
   }
 
+  async remove(id: string): Promise<void> {
+    
+  }
+
   async findUnique(id?: string): Promise<User | null> {
     return this.users.find(user => user.id === id) || null
   }
