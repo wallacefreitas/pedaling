@@ -1,7 +1,9 @@
-import { User } from "../entities/user";
+import { UserProps } from "../entities/user";
+
+type User = UserProps
 
 export interface UserRepository {
-  create(user: User): Promise<User>;
+  create(user: User): Promise<void>;
   save(user: User): Promise<void>;
   remove(id: string): Promise<void>;
   findUnique(id: string): Promise<User | null>

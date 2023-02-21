@@ -9,9 +9,7 @@ export class PrismaUsersRepository implements UserRepository {
     private prisma = new PrismaClient()
   ){}
 
-  async create(user: User): Promise<User> {
-    const newUser = new User(user);
-
+  async create(user: User): Promise<void> {
     await this.prisma.user.create({
       data: {
         id: user!.id,
@@ -20,8 +18,6 @@ export class PrismaUsersRepository implements UserRepository {
         createdAt: new Date()
       }
     });
-
-    return newUser
   }
 
   async save(user: User): Promise<void> {
