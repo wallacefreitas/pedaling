@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { User } from "../../../application/entities/user";
+import { UserProps } from "../../../application/entities/user";
 import { UserRepository } from "../../../application/repositories/users-repository";
+
+type User = UserProps
 
 export class PrismaUsersRepository implements UserRepository {
   public users: User[] = []
@@ -33,40 +35,30 @@ export class PrismaUsersRepository implements UserRepository {
   }
 
   async remove(id: string): Promise<void> {
-    
-  }
-
-  async findUnique(id: string): Promise<User | null> {
-    const user = await this.prisma.user.findUnique({
+    await this.prisma.user.delete({
       where: {
         id
       }
     })
-    
+  }
 
-    if (user) {
-      return new User(user)
-    }
-
-    return null
+  async findUnique(id: string): Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        id
+      }
+    })
   }
 
   async findMany(): Promise<User[]> {
-    const users = await this.prisma.user.findMany()
-    return users.map( user => new User(user))
+    return await this.prisma.user.findMany()
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await this.prisma.user.findUnique({
+    return await this.prisma.user.findUnique({
       where: {
         email
       }
     })
-
-    if (user) {
-      return new User(user)
-    }
-
-    return null
   }
 }

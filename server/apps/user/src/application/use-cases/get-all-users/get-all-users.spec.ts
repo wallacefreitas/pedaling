@@ -1,8 +1,10 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
-import { User } from "../../entities/user";
+import { UserProps } from "../../entities/user";
 import { InMemoryUsersRepository } from "../../../infra/repositories/in-memory/in-memory-users-repository";
 import { GetAllUsers } from "./get-all-users";
 import { CreateUser } from "../create-user/create-user";
+
+type User = UserProps
 
 describe('Get All Users', () => {
   it('should be able to get all users', async () => {

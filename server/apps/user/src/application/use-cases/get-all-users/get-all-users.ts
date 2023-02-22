@@ -1,7 +1,7 @@
-import { User } from "../../entities/user";
+import { UserProps } from "../../entities/user";
 import { UserRepository } from "../../repositories/users-repository";
 
-type GetAllUsersResponse = User[]
+type GetAllUsersResponse = UserProps[]
 
 export class GetAllUsers {
   constructor(
