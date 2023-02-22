@@ -25,8 +25,8 @@ export class InMemoryUsersRepository implements UserRepository {
     this.users.filter( data => data.id === user.id ).forEach( data => data = user )
   }
 
-  async remove(id: string): Promise<void> {
-    this.users.filter( data => data.id === id ).splice(0, 1)
+  async remove(id: string): Promise<User[]> {
+    return this.users.filter( (user, index) => user.id === id ? this.users.splice(index, 1) : user)
   }
 
   async findUnique(id?: string): Promise<User | null> {

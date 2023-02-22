@@ -10,7 +10,7 @@ export class CreateUserController {
     const { name, email } = request.body
 
     try {
-      const user = await this.createUserUseCase.execute({
+      await this.createUserUseCase.execute({
         name,
         email
       })
