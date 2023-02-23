@@ -1,8 +1,9 @@
 import { Server, ServerCredentials, loadPackageDefinition } from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
 import http from 'node:http'
+import { listAllUsers } from './controllers/list-all-users'
 
-const PROTO_PATH = './proto/user.proto'
+const PROTO_PATH = './proto/pedaling.proto'
 
 function main() {
   const packageDefinition = protoLoader.loadSync(
@@ -16,25 +17,26 @@ function main() {
     }
   )
 
-  const userProto = loadPackageDefinition(packageDefinition).user;
+  const pedalingProto = loadPackageDefinition(packageDefinition);
   const server = new Server()
 
-  server.addService(userProto.UserService.service, {
-    listAllUsers: async (_: any, callback: Function) => {
-      http.get('http://localhost:3001/users', (res) => {
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => { rawData += chunk; });
-        res.on('end', () => {
-          try {
-            const parsedData = JSON.parse(rawData);
-            callback(null, { users: parsedData })
-          } catch (e) {
-            console.error('error');
-          }
-        });
-      })
-    }
+  server.addService(pedalingProto.PedalingService.service, {
+    // listAllUsers: async (_: any, callback: Function) => {
+    //   http.get('http://localhost:3001/users', (res) => {
+    //     res.setEncoding('utf8');
+    //     let rawData = '';
+    //     res.on('data', (chunk) => { rawData += chunk; });
+    //     res.on('end', () => {
+    //       try {
+    //         const parsedData = JSON.parse(rawData);
+    //         callback(null, { users: parsedData })
+    //       } catch (e) {
+    //         console.error('error');
+    //       }
+    //     });
+    //   })
+    // }
+    listAllUsers
   })
 
   server.bindAsync(
