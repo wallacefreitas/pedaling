@@ -2,7 +2,7 @@ import { Server, ServerCredentials, loadPackageDefinition } from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
 import http from 'node:http'
 
-const PROTO_PATH = 'users.proto'
+const PROTO_PATH = './proto/user.proto'
 
 function main() {
   const packageDefinition = protoLoader.loadSync(
@@ -16,14 +16,11 @@ function main() {
     }
   )
 
-  const userProto = loadPackageDefinition(packageDefinition);
+  const userProto = loadPackageDefinition(packageDefinition).user;
   const server = new Server()
-  const users = [
-    { id: '1', name: 'User 1', email: 'user1@email.com' }
-  ]
 
   server.addService(userProto.UserService.service, {
-    listAllUsers: async (call: any, callback: any) => {
+    listAllUsers: async (_: any, callback: Function) => {
       http.get('http://localhost:3001/users', (res) => {
         res.setEncoding('utf8');
         let rawData = '';
@@ -32,14 +29,11 @@ function main() {
           try {
             const parsedData = JSON.parse(rawData);
             callback(null, { users: parsedData })
-            console.log(parsedData);
           } catch (e) {
             console.error('error');
           }
         });
       })
-
-      
     }
   })
 
@@ -47,7 +41,8 @@ function main() {
     "0.0.0.0:50051",
     ServerCredentials.createInsecure(),
     (error, port) => {
-      console.log("Server running at http://localhost:50051");
+      if (error) throw error;
+      console.log("Server running at http://localhost:" + port);
       server.start();
     }
   );
