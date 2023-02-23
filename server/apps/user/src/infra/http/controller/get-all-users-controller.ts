@@ -11,8 +11,7 @@ export class GetAllUsersController {
 
     try {
       const users = await this.getAllUsersUseCase.execute()
-
-      return response.status(201).json(users);
+      return response.status(200).json(users);
     } catch (err: any) {
       return response.status(400).json({
         message: err.message || 'Unexpected error.'
