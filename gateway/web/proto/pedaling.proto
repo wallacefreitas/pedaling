@@ -2,10 +2,11 @@ syntax = "proto3";
 
 service PedalingService {
   rpc ListAllUsers (Empty) returns (UserList) {}
+  rpc CreateUser (User) returns (User) {}
 }
 
 message User {
-  string id = 1;
+  optional string id = 1;
   string name = 2;
   string email = 3;
 }
