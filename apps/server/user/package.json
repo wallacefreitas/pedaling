@@ -1,5 +1,5 @@
 {
-  "name": "@pedaling/microservice-user",
+  "name": "@pedaling/user-microservice",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",

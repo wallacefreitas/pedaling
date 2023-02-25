@@ -1,10 +1,17 @@
 {
   "name": "pedaling",
   "version": "1.0.0",
+  "author": {
+    "name": "Wallace de Freitas",
+    "email": "wallace.freitas.b@gmail.com"
+  },
   "private": true,
   "workspaces": [
-    "packages/**/*"
+    "apps/**/*"
   ],
+  "scripts": {
+    "dev": "turbo run dev"
+  },
   "devDependencies": {
     "typescript": "^4.9.5"
   },
