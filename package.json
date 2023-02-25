@@ -7,5 +7,8 @@
   ],
   "devDependencies": {
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "turbo": "^1.8.2"
   }
 }
