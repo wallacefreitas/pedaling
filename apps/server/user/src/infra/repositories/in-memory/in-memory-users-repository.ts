@@ -1,9 +1,9 @@
 import { UserProps } from "../../../application/entities/user";
-import { UserRepository } from "../../../application/repositories/users-repository";
+import { UsersRepository } from "../../../application/repositories/users-repository";
 
 type User = UserProps
 
-export class InMemoryUsersRepository implements UserRepository {
+export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = [
     {
       id: '123456789',
@@ -25,8 +25,8 @@ export class InMemoryUsersRepository implements UserRepository {
     this.users.filter( data => data.id === user.id ).forEach( data => data = user )
   }
 
-  async remove(id: string): Promise<User[]> {
-    return this.users.filter( (user, index) => user.id === id ? this.users.splice(index, 1) : user)
+  async remove(id: string): Promise<void> {
+    this.users.splice( this.users.findIndex( user => user.id === id ), 1 )
   }
 
   async findUnique(id?: string): Promise<User | null> {

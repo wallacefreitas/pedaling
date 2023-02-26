@@ -12,9 +12,9 @@ describe('Delete User', () => {
       usersRepository
     )
 
-    const users = await removeUser.execute('123456789')
+    await removeUser.execute('123456789')
     
-    expect(users).toHaveLength(1)
+    expect(usersRepository.users).toHaveLength(1)
   })
 
   it('should not be able to delete an user not found', async () => {

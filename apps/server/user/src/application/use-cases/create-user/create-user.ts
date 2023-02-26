@@ -1,5 +1,5 @@
 import { User } from "../../entities/user";
-import { UserRepository } from "../../repositories/users-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 
 interface CreateUserRequest {
   name: string;
@@ -10,7 +10,7 @@ type CreateUserResponse = User
 
 export class CreateUser {
   constructor(
-    private usersRepository: UserRepository
+    private usersRepository: UsersRepository
   ){}
 
   async execute({ name, email }: CreateUserRequest): Promise<CreateUserResponse> {

@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { UserProps } from "../../../application/entities/user";
-import { UserRepository } from "../../../application/repositories/users-repository";
+import { UsersRepository } from "../../../application/repositories/users-repository";
 
 type User = UserProps
 
-export class PrismaUsersRepository implements UserRepository {
+export class PrismaUsersRepository implements UsersRepository {
   public users: User[] = []
 
   constructor(

@@ -1,11 +1,11 @@
 import { UserProps } from "../../entities/user";
-import { UserRepository } from "../../repositories/users-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 
 type User = UserProps
 
 export class RemoveUser {
   constructor(
-    private usersRepository: UserRepository
+    private usersRepository: UsersRepository
   ){}
 
   async execute(id: string): Promise<User[]> {

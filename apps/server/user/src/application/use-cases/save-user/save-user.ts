@@ -1,5 +1,5 @@
 import { User } from "../../entities/user";
-import { UserRepository } from "../../repositories/users-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 
 interface SaveUserRequest {
   id: string;
@@ -11,7 +11,7 @@ type SaveUserResponse = User
 
 export class SaveUser {
   constructor(
-    private usersRepository: UserRepository
+    private usersRepository: UsersRepository
   ){}
 
   async execute({ id, name, email }: SaveUserRequest): Promise<SaveUserResponse> {
