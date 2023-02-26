@@ -16,6 +16,7 @@ export class Pedal {
   private props: PedalProps
 
   constructor(props: PedalProps) {
+    const { startDateRegistration, endDateRegistration } = props;
     const pedalSchema = z.object({
       id: z.string().uuid(),
       name: z.string().min(1),
@@ -33,12 +34,25 @@ export class Pedal {
 
     try {
       const pedal = pedalSchema.parse(props)
+      
+      if ( startDateRegistration <= new Date() ) {
+        throw new Error('Invalid start date registration')
+      }
+
+      if ( endDateRegistration < startDateRegistration ) {
+        throw new Error('Invalid end date registration')
+      }
+
       this.props = pedal;
 
     } catch(err) {
 
       if (err instanceof ZodError) {
         err.errors.map(error => { throw new Error(error.message) } )
+      }
+
+      if (err instanceof Error) {
+        throw new Error(err.message)
       }
 
       throw new Error("Unknown error")
