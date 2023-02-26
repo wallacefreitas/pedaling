@@ -9,7 +9,7 @@ export interface PedalProps {
   endDateRegistration: Date
   additionalInformation?: string | null
   startPlace: string
-  participantsLimit?: number
+  participantsLimit?: number | null
 }
 
 export class Pedal {
@@ -24,7 +24,7 @@ export class Pedal {
       endDateRegistration: z.date(),
       additionalInformation: z.nullable(z.string()),
       startPlace: z.string(),
-      participantsLimit: z.number()
+      participantsLimit: z.nullable(z.number())
     })
 
     if (!props.id) {
