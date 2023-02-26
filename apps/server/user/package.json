@@ -22,7 +22,6 @@
     "@types/express": "^4.17.17",
     "@types/node": "^18.14.1",
     "ts-node-dev": "^2.0.0",
-    "vitest": "^0.29.1",
-    "tsconfig": "workspace:*"
+    "vitest": "^0.29.1"
   }
 }
