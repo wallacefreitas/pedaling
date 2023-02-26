@@ -1,13 +1,11 @@
 import { expect, test } from 'vitest'
+import { getFutureDate } from '../tests/utils/get-future-date'
 import { Pedal } from './pedal'
 
 test('create an pedal', () => {
-  const startsAt = new Date()
-  const startsRegistrationAt = new Date()
-  const endsRegistrationAt = new Date()
-
-  startsRegistrationAt.setDate(startsRegistrationAt.getDate() + 1)
-  endsRegistrationAt.setDate(endsRegistrationAt.getDate() + 2)
+  const startsAt = getFutureDate('2023-02-26')
+  const startsRegistrationAt = getFutureDate('2023-02-26')
+  const endsRegistrationAt = getFutureDate('2023-02-28')
 
   const pedal = new Pedal({
     name: 'Pedal 1',
@@ -24,12 +22,9 @@ test('create an pedal', () => {
 })
 
 test('cannot create an pedal with end date before start date', () => {
-  const startsAt = new Date()
-  const startsRegistrationAt = new Date()
-  const endsRegistrationAt = new Date()
-
-  startsRegistrationAt.setDate(startsRegistrationAt.getDate() + 2)
-  endsRegistrationAt.setDate(endsRegistrationAt.getDate() + 1)
+  const startsAt = getFutureDate('2023-02-26')
+  const startsRegistrationAt = getFutureDate('2023-02-26')
+  const endsRegistrationAt = getFutureDate('2023-02-25')
 
   expect(() => {
     return new Pedal({
