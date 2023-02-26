@@ -5,7 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsnd --respawn --transpile-only src/server.ts",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
