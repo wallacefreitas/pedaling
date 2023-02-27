@@ -9,7 +9,7 @@ export interface PedalProps {
   endDateRegistration: Date
   additionalInformation?: string | null
   startPlace: string
-  participantsLimit?: number | null
+  participantsLimit?: number
 }
 
 export class Pedal {
@@ -25,11 +25,15 @@ export class Pedal {
       endDateRegistration: z.date(),
       additionalInformation: z.nullable(z.string()),
       startPlace: z.string(),
-      participantsLimit: z.nullable(z.number())
+      participantsLimit: z.number()
     })
 
     if (!props.id) {
       props.id = randomUUID()
+    }
+
+    if (!props.participantsLimit) {
+      props.participantsLimit = 0
     }
 
     try {
