@@ -84,19 +84,19 @@ export class Pedal {
   }
 
   get startDateRegistration() {
-    return this.props.name
+    return this.props.startDateRegistration
   }
 
-  set startDateRegistration(name: string) {
-    this.props.name = name
+  set startDateRegistration(startDateRegistration: Date) {
+    this.props.startDateRegistration = startDateRegistration
   }
 
   get endDateRegistration() {
-    return this.props.name
+    return this.props.endDateRegistration
   }
 
-  set endDateRegistration(name: string) {
-    this.props.name = name
+  set endDateRegistration(endDateRegistration: Date) {
+    this.props.endDateRegistration = endDateRegistration
   }
 
   get additionalInformation() {
