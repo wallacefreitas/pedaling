@@ -12,5 +12,11 @@ export class InMemoryPedalsRepository implements PedalsRepository {
     this.pedals.splice( this.pedals.findIndex( pedal => pedal.id === id ), 1 )
   }
 
+  async findUnique(id: string): Promise<Pedal | null> {
+    return this.pedals.find(pedal => pedal.id === id) || null
+  }
 
+  async findMany(): Promise<Pedal[]> {
+    return this.pedals
+  }
 }

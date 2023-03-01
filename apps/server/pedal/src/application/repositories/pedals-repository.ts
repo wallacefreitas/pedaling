@@ -7,5 +7,5 @@ export interface PedalsRepository {
   // save(pedal: Pedal): Promise<void>;
   remove(id: string): Promise<void>;
   findUnique(id: string): Promise<Pedal | null>
-  // findMany(): Promise<Pedal[]>
+  findMany(): Promise<Pedal[]>
 }

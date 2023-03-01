@@ -9,7 +9,7 @@ export class RemovePedal {
     const user = await this.pedalsRepository.findUnique(id);
 
     if (!user) {
-      throw new Error('User does not exist')
+      throw new Error('Pedal does not exist')
     }
 
     return await this.pedalsRepository.remove(id)
