@@ -4,6 +4,6 @@ import { CreatePedal } from "./create-pedal"
 
 const inMemoryPedalsRepository = new InMemoryPedalsRepository()
 const createPedal = new CreatePedal(inMemoryPedalsRepository)
-const createUserController = new CreatePedalController(createPedal)
+const createPedalController = new CreatePedalController(createPedal)
 
-export { createPedal, createUserController }
+export { createPedal, createPedalController }
