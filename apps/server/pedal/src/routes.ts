@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { createPedalController } from "./application/use-cases/create-pedal";
+import { getAllPedalsController } from "./application/use-cases/get-all-pedals";
 import { removePedalController } from "./application/use-cases/remove-pedal";
 
 const router = Router()
 
-// router.get('/users', (request, response) => {
-//   return getAllUsersController.handle(request, response)
-// })
+router.get('/pedal', (request, response) => {
+  return getAllPedalsController.handle(request, response)
+})
 
 router.post('/pedal', (request, response) => {
   return createPedalController.handle(request, response)
