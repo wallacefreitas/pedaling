@@ -8,6 +8,10 @@ export class InMemoryPedalsRepository implements PedalsRepository {
     this.pedals.push(pedal);
   }
 
+  async save(pedal: Pedal): Promise<void> {
+    this.pedals.filter( data => data.id === pedal.id ).forEach( data => data = pedal )
+  }
+
   async remove(id: string): Promise<void> {
     this.pedals.splice( this.pedals.findIndex( pedal => pedal.id === id ), 1 )
   }
