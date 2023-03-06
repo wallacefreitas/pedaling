@@ -1,0 +1,33 @@
+import { describe, expect, expectTypeOf, it } from "vitest";
+import { Pedal } from "../../entities/pedal";
+import { InMemoryPedalsRepository } from "../../../infra/repositories/in-memory/in-memory-pedals-repository";
+import { GetAllPedals } from "./get-all-pedals";
+import { CreatePedal } from "../create-pedal/create-pedal";
+import { getFutureDate } from "../../tests/utils/get-future-date";
+
+describe('Get All Users', () => {
+  it('should be able to get all users', async () => {
+    const pedalsRepository = new InMemoryPedalsRepository()
+    const createPedal = new CreatePedal(
+      pedalsRepository
+    )
+    const getAllUsers = new GetAllPedals(
+      pedalsRepository
+    )
+
+    await createPedal.execute({
+      name: 'John Doe',
+      startDate: new Date(),
+      startDateRegistration: getFutureDate('2023-03-06'),
+      endDateRegistration: getFutureDate('2023-03-08'),
+      startPlace: 'Roma',
+      additionalInformation: '',
+      participantsLimit: 20
+    })
+
+    const pedals = await getAllUsers.execute()
+    
+    expectTypeOf(pedals).toEqualTypeOf<Pedal[]>()
+    expect(pedals.length).toBeGreaterThanOrEqual(1)
+  })
+})
