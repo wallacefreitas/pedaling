@@ -1,7 +1,7 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
 import { Pedal } from "../../entities/pedal";
 import { InMemoryPedalsRepository } from "../../../infra/repositories/in-memory/in-memory-pedals-repository";
-import { GetAllPedals } from "./get-all-pedals";
+import { GetUniquePedal } from "./get-unique-pedal";
 import { CreatePedal } from "../create-pedal/create-pedal";
 import { getFutureDate } from "../../tests/utils/get-future-date";
 
@@ -11,11 +11,11 @@ describe('Get All Users', () => {
     const createPedal = new CreatePedal(
       pedalsRepository
     )
-    const getAllPedals = new GetAllPedals(
+    const getUniquePedal = new GetUniquePedal(
       pedalsRepository
     )
 
-    await createPedal.execute({
+    const { id } = await createPedal.execute({
       name: 'John Doe',
       startDate: new Date(),
       startDateRegistration: getFutureDate('2023-03-06'),
@@ -25,9 +25,9 @@ describe('Get All Users', () => {
       participantsLimit: 20
     })
 
-    const pedals = await getAllPedals.execute()
+    const pedal = await getUniquePedal.execute(id || "")
     
-    expectTypeOf(pedals).toEqualTypeOf<Pedal[]>()
-    expect(pedals.length).toBeGreaterThanOrEqual(1)
+    expectTypeOf(pedal).toEqualTypeOf<Pedal | null>()
+    expect(pedal).toHaveProperty('name', 'John Doe')
   })
 })
