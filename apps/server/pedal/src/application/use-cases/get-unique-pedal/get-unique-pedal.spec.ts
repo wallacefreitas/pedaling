@@ -5,8 +5,8 @@ import { GetUniquePedal } from "./get-unique-pedal";
 import { CreatePedal } from "../create-pedal/create-pedal";
 import { getFutureDate } from "../../tests/utils/get-future-date";
 
-describe('Get All Users', () => {
-  it('should be able to get all users', async () => {
+describe('Get Unique Pedal', () => {
+  it('should be able to get unique pedal', async () => {
     const pedalsRepository = new InMemoryPedalsRepository()
     const createPedal = new CreatePedal(
       pedalsRepository
