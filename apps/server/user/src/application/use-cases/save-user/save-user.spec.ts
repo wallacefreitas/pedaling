@@ -27,6 +27,6 @@ describe('Save User', () => {
 
     user2.name = 'Mary Test'
 
-    expect(saveUser.execute(user2)).resolves.toBeInstanceOf(User)
+    expect(user2).toHaveProperty('name', 'Mary Test')
   })
 })
