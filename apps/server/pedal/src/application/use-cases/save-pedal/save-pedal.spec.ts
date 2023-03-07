@@ -41,7 +41,9 @@ describe('Save User', () => {
       startDate: pedal.startDate,
       startDateRegistration: pedal.startDateRegistration,
       endDateRegistration: pedal.endDateRegistration,
-      startPlace: pedal.startPlace
+      startPlace: pedal.startPlace,
+      additionalInformation: pedal.additionalInformation,
+      participantsLimit: pedal.participantsLimit
     })
 
     expect(pedalChanged).toHaveProperty('name', 'Pedal 2 Test')
