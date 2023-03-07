@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { User } from "../../entities/user";
 import { InMemoryUsersRepository } from "../../../infra/repositories/in-memory/in-memory-users-repository";
 import { SaveUser } from "./save-user";
 import { CreateUser } from "../create-user/create-user";
@@ -25,8 +24,12 @@ describe('Save User', () => {
       email: 'maryann@email.com',
     })
 
-    user2.name = 'Mary Test'
+    const user2Changed = await saveUser.execute({
+      id: user2.id || "",
+      name: 'Mary Test',
+      email: user2.email
+    })
 
-    expect(user2).toHaveProperty('name', 'Mary Test')
+    expect(user2Changed).toHaveProperty('name', 'Mary Test')
   })
 })
