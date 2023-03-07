@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { Pedal } from "../../entities/pedal";
 import { InMemoryPedalsRepository } from "../../../infra/repositories/in-memory/in-memory-pedals-repository";
 import { SavePedal } from "./save-pedal";
 import { CreatePedal } from "../create-pedal/create-pedal";
