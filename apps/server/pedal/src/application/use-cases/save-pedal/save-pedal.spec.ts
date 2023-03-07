@@ -16,7 +16,7 @@ describe('Save User', () => {
       pedalsRepository
     )
 
-    const pedal1 = await createPedal.execute({
+    await createPedal.execute({
       name: 'Pedal 1',
       startDate: new Date(),
       startDateRegistration: getFutureDate('2023-03-06'),
@@ -26,7 +26,7 @@ describe('Save User', () => {
       participantsLimit: 20
     })
 
-    const pedal2 = await createPedal.execute({
+    const pedal = await createPedal.execute({
       name: 'Pedal 2',
       startDate: new Date(),
       startDateRegistration: getFutureDate('2023-03-06'),
@@ -36,8 +36,11 @@ describe('Save User', () => {
       participantsLimit: 20
     })
 
-    pedal2.name = 'Pedal 2 Test'
+    const pedalChanged = await savePedal.execute({
+      id: pedal.id || "",
+      name: 'Pedal 2 test'
+    })
 
-    expect(pedal2).toHaveProperty('name', 'Pedal 2 Test')
+    expect(pedalChanged).toHaveProperty('name', 'Pedal 2 Test')
   })
 })
