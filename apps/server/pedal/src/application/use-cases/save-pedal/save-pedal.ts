@@ -4,11 +4,11 @@ import { PedalsRepository } from "../../repositories/pedals-repository";
 interface SavePedalRequest {
   id: string;
   name: string;
-  startDate?: Date
-  startDateRegistration?: Date
-  endDateRegistration?: Date
+  startDate: Date
+  startDateRegistration: Date
+  endDateRegistration: Date
   additionalInformation?: string | null
-  startPlace?: string
+  startPlace: string
   participantsLimit?: number
 }
 

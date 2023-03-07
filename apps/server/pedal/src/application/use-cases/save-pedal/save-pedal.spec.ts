@@ -37,7 +37,11 @@ describe('Save User', () => {
 
     const pedalChanged = await savePedal.execute({
       id: pedal.id || "",
-      name: 'Pedal 2 test'
+      name: 'Pedal 2 test',
+      startDate: pedal.startDate,
+      startDateRegistration: pedal.startDateRegistration,
+      endDateRegistration: pedal.endDateRegistration,
+      startPlace: pedal.startPlace
     })
 
     expect(pedalChanged).toHaveProperty('name', 'Pedal 2 Test')
