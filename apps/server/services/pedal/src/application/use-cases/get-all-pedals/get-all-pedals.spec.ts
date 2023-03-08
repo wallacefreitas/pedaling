@@ -26,7 +26,6 @@ describe('Get All Pedals', () => {
     })
 
     const pedals = await getAllPedals.execute()
-    console.log(pedals);
     
     expectTypeOf(pedals).toEqualTypeOf<Pedal[]>()
     expect(pedals.length).toBeGreaterThanOrEqual(1)
