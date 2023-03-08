@@ -18,3 +18,16 @@ model User {
 
   @@map("user")
 }
+
+model Pedal {
+  id                    String   @id @unique @default(uuid())
+  name                  String
+  startDate             DateTime
+  startDateRegistration DateTime
+  endDateRegistration   DateTime
+  additionalInformatio  String
+  startPlace            String
+  participantsLimit     BigInt
+
+  @@map("Pedal")
+}
