@@ -1,12 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { UserProps } from "../../../application/entities/user";
+import { User } from "../../../application/entities/user";
 import { UsersRepository } from "../../../application/repositories/users-repository";
 
-type User = UserProps
-
 export class PrismaUsersRepository implements UsersRepository {
-  public users: User[] = []
-
   constructor(
     private prisma = new PrismaClient()
   ){}
