@@ -13,7 +13,7 @@ describe('Create an Pedal', () => {
 
     expect(createPedal.execute({
       name: 'John Doe',
-      startDate: new Date(),
+      startDate: getFutureDate('2023-04-06'),
       startDateRegistration: getFutureDate('2023-03-06'),
       endDateRegistration: getFutureDate('2023-03-08'),
       startPlace: 'Roma',
@@ -30,7 +30,7 @@ describe('Create an Pedal', () => {
 
     expect(createPedal.execute({
       name: 'John Doe',
-      startDate: new Date(),
+      startDate: getFutureDate('2023-04-06'),
       startDateRegistration: getFutureDate('2023-03-06'),
       endDateRegistration: getFutureDate('2023-03-02'),
       startPlace: 'Roma',

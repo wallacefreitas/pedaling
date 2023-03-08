@@ -38,7 +38,7 @@ export class Pedal {
     try {
       const pedal = pedalSchema.parse(props)
       
-      this.validDataPedaling();
+      this.validDataPedaling(props);
       this.props = pedal;
 
     } catch(err) {
@@ -55,11 +55,11 @@ export class Pedal {
     }
   }
 
-  private validDataPedaling() {
-    const { startDate, startDateRegistration, endDateRegistration } = this.props;
+  private validDataPedaling(props: PedalProps) {
+    const { startDate, startDateRegistration, endDateRegistration } = props;
 
     if ( startDate <= startDateRegistration || startDate <= endDateRegistration ) {
-      throw new Error('Invalid start date')
+      throw new Error('Invalid start date of the pedaling')
     }
 
     if ( startDateRegistration <= new Date() ) {

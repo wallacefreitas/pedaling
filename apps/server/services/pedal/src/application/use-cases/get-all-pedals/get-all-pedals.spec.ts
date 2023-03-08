@@ -17,7 +17,7 @@ describe('Get All Pedals', () => {
 
     await createPedal.execute({
       name: 'John Doe',
-      startDate: new Date(),
+      startDate: getFutureDate('2023-04-06'),
       startDateRegistration: getFutureDate('2023-03-06'),
       endDateRegistration: getFutureDate('2023-03-08'),
       startPlace: 'Roma',
@@ -26,6 +26,7 @@ describe('Get All Pedals', () => {
     })
 
     const pedals = await getAllPedals.execute()
+    console.log(pedals);
     
     expectTypeOf(pedals).toEqualTypeOf<Pedal[]>()
     expect(pedals.length).toBeGreaterThanOrEqual(1)

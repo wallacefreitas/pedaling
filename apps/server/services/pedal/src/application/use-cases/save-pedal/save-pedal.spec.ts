@@ -17,7 +17,7 @@ describe('Save User', () => {
 
     await createPedal.execute({
       name: 'Pedal 1',
-      startDate: new Date(),
+      startDate: getFutureDate('2023-04-06'),
       startDateRegistration: getFutureDate('2023-03-06'),
       endDateRegistration: getFutureDate('2023-03-08'),
       startPlace: 'Roma',
@@ -27,7 +27,7 @@ describe('Save User', () => {
 
     const pedal = await createPedal.execute({
       name: 'Pedal 2',
-      startDate: new Date(),
+      startDate: getFutureDate('2023-06-06'),
       startDateRegistration: getFutureDate('2023-03-06'),
       endDateRegistration: getFutureDate('2023-03-08'),
       startPlace: 'Roma',
@@ -37,7 +37,7 @@ describe('Save User', () => {
 
     const pedalChanged = await savePedal.execute({
       id: pedal.id || "",
-      name: 'Pedal 2 test',
+      name: 'Pedal 2 Test',
       startDate: pedal.startDate,
       startDateRegistration: pedal.startDateRegistration,
       endDateRegistration: pedal.endDateRegistration,
