@@ -29,5 +29,5 @@ model Pedal {
   startPlace            String   @map("start_place")
   participantsLimit     BigInt   @map("participants_limit")
 
-  @@map("Pedal")
+  @@map("pedal")
 }
