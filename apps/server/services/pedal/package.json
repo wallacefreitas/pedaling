@@ -1,8 +1,9 @@
 {
   "name": "@pedaling/pedal-microservice",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/server.ts",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "tsnd --respawn --transpile-only src/server.ts",
     "test": "vitest run",
