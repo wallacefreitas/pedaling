@@ -22,12 +22,12 @@ model User {
 model Pedal {
   id                    String   @id @unique @default(uuid())
   name                  String
-  startDate             DateTime
-  startDateRegistration DateTime
-  endDateRegistration   DateTime
-  additionalInformatio  String
-  startPlace            String
-  participantsLimit     BigInt
+  startDate             DateTime @map("start_date")
+  startDateRegistration DateTime @map("start_date_registration")
+  endDateRegistration   DateTime @map("end_date_registration")
+  additionalInformation String   @map("additional_information")
+  startPlace            String   @map("start_place")
+  participantsLimit     BigInt   @map("participants_limit")
 
   @@map("Pedal")
 }
