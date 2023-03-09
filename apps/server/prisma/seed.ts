@@ -3,8 +3,10 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  await users()
-  await pedals()
+  await Promise.all([
+    users(),
+    pedals()
+  ])
 }
 
 async function users () {
