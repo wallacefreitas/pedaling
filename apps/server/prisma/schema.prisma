@@ -11,23 +11,36 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  createdAt DateTime @default(now()) @map("created_at")
+  id           String         @id @default(uuid())
+  name         String
+  email        String         @unique
+  createdAt    DateTime       @default(now()) @map("created_at")
+  Subscription Subscription[]
 
   @@map("user")
 }
 
 model Pedal {
-  id                    String   @id @unique @default(uuid())
+  id                    String         @id @unique @default(uuid())
   name                  String
-  startDate             DateTime @map("start_date")
-  startDateRegistration DateTime @map("start_date_registration")
-  endDateRegistration   DateTime @map("end_date_registration")
-  additionalInformation String   @map("additional_information")
-  startPlace            String   @map("start_place")
-  participantsLimit     BigInt   @map("participants_limit")
+  startDate             DateTime       @map("start_date")
+  startDateRegistration DateTime       @map("start_date_registration")
+  endDateRegistration   DateTime       @map("end_date_registration")
+  additionalInformation String         @map("additional_information")
+  startPlace            String         @map("start_place")
+  participantsLimit     BigInt         @map("participants_limit")
+  Subscription          Subscription[]
 
   @@map("pedal")
+}
+
+model Subscription {
+  user             User     @relation(fields: [userId], references: [id])
+  pedal            Pedal    @relation(fields: [rideId], references: [id])
+  subscriptionDate DateTime @map("subscription_date")
+
+  userId String
+  rideId String
+
+  @@id([userId, rideId])
 }
