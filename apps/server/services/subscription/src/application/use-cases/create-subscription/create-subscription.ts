@@ -7,6 +7,8 @@ interface CreateSubscriptionRequest {
   subscriptionDate: Date
 }
 
+type CreateSubscriptionResponse = Subscription
+
 export class CreateSubscription {
   constructor(
     private subscriptionsRepository: SubscriptionsRepository
@@ -16,7 +18,7 @@ export class CreateSubscription {
     userId,
     rideId,
     subscriptionDate
-  }: CreateSubscriptionRequest): Promise<void>{
+  }: CreateSubscriptionRequest): Promise<CreateSubscriptionResponse>{
     const subscription = new Subscription({
       userId,
       rideId,
@@ -24,5 +26,7 @@ export class CreateSubscription {
     })
 
     await this.subscriptionsRepository.create(subscription)
+
+    return subscription
   }
 }

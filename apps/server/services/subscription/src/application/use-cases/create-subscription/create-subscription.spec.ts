@@ -11,8 +11,8 @@ describe('Create an Subscription', () => {
     )
 
     expect(createSubscription.execute({
-      userId: '',
-      rideId: '',
+      userId: '123456',
+      rideId: '123',
       subscriptionDate: new Date()
     })).resolves.toBeInstanceOf(Subscription)
   })

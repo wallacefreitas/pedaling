@@ -10,6 +10,7 @@ interface CreatePedalRequest {
   startPlace: string
   participantsLimit?: number
 }
+
 type CreatePedalResponse = Pedal
 
 export class CreatePedal {
