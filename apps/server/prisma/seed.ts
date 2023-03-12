@@ -15,7 +15,7 @@ async function users () {
     data: {
       name: "John Doe",
       email: "johndoe@email.com",
-      created_at: new Date('2022-12-31T03:00:00.000')
+      createdAt: new Date('2022-12-31T03:00:00.000')
     }
   })
 }
