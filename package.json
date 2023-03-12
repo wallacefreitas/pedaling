@@ -7,7 +7,8 @@
   },
   "private": true,
   "workspaces": [
-    "apps/server/services/**/*"
+    "apps/server/services/**/*",
+    "apps/**/**"
   ],
   "scripts": {
     "dev": "turbo run dev",

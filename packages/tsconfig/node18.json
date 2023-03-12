@@ -3,13 +3,15 @@
   "display": "Node 18",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["ES2021"],
+    "lib": ["ES2021", "esnext.asynciterable"],
     "module": "commonjs",
     "target": "ES2021",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": ["node_modules"]
 }
