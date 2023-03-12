@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "tsnd --respawn --transpile-only src/server.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "db:migrate": "prisma db push",
+    "db:seed": "tsnd ./prisma/seed.ts"
   },
   "dependencies": {
     "date-fns": "^2.29.3"
