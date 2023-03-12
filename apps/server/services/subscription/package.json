@@ -7,6 +7,9 @@
   "scripts": {
     "dev": "tsnd --respawn --transpile-only src/server.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:seed": "tsnd ./prisma/seed.ts"
   }
 }

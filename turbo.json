@@ -10,11 +10,14 @@
     "test:watch": {
       "cache": false
     },
-    "db:migrate": {
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
       "cache": false
     },
     "db:seed": {
-      "dependsOn": ["db:migrate"],
+      "dependsOn": ["db:generate", "db:push"],
       "cache": false
     }
   }
