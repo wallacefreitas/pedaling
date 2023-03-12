@@ -1,16 +1,30 @@
-version: '3.8'
+version: '3.9'
 services:
-  db:
+  user-db:
     image: postgres:14.1-alpine
-    restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=pedaling_user_db
     ports:
       - '5432:5432'
     volumes:
-      - db:/var/lib/postgresql/data
+      - db-data-user:/var/lib/postgresql/data
+
+  pedal-db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pedaling_pedal_db
+    ports:
+      - '5433:5432'
+    volumes:
+      - db-data-pedal:/var/lib/postgresql/data
+
 volumes:
-  db:
+  db-data-user:
+    driver: local
+
+  db-data-pedal:
     driver: local
