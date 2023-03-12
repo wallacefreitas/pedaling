@@ -4,7 +4,7 @@ import { UsersRepository } from "../../../application/repositories/users-reposit
 
 export class PrismaUsersRepository implements UsersRepository {
   constructor(
-    private prisma = new PrismaClient()
+    private prisma = new PrismaClient(),
   ){}
 
   async create(user: User): Promise<void> {
