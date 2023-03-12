@@ -1,11 +1,11 @@
 import { GetAllUsersController } from "../../../infra/http/controller/get-all-users-controller"
 import { InMemoryUsersRepository } from "../../../infra/repositories/in-memory/in-memory-users-repository"
-// import { PrismaUsersRepository } from "../../../infra/repositories/prisma/prisma-users-repository"
+import { PrismaUsersRepository } from "../../../infra/repositories/prisma/prisma-users-repository"
 import { GetAllUsers } from "./get-all-users"
 
 const inMemoryUsersRepository = new InMemoryUsersRepository()
-//  const prismaUsersRepository = new PrismaUsersRepository() TODO: UNCOMMENTED MAKE A CHANGE TO PRISMA
-const getAllUsers = new GetAllUsers(inMemoryUsersRepository)
+const prismaUsersRepository = new PrismaUsersRepository()
+const getAllUsers = new GetAllUsers(prismaUsersRepository)
 const getAllUsersController = new GetAllUsersController(getAllUsers)
 
 export { getAllUsers, getAllUsersController }

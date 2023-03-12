@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { User } from "../../../application/entities/user";
+import { UserProps as User } from "../../../application/entities/user";
 import { UsersRepository } from "../../../application/repositories/users-repository";
 
 export class PrismaUsersRepository implements UsersRepository {
@@ -43,11 +43,11 @@ export class PrismaUsersRepository implements UsersRepository {
       where: {
         id
       }
-    })
+    }).then()
   }
 
   async findMany(): Promise<User[]> {
-    return await this.prisma.user.findMany()
+    return await this.prisma.user.findMany();
   }
 
   async findByEmail(email: string): Promise<User | null> {
@@ -55,6 +55,6 @@ export class PrismaUsersRepository implements UsersRepository {
       where: {
         email
       }
-    })
+    }).then()
   }
 }
