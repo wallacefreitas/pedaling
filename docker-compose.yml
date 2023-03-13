@@ -22,9 +22,23 @@ services:
     volumes:
       - db-data-pedal:/var/lib/postgresql/data
 
+  subscription-db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pedaling_subscription_db
+    ports:
+      - '5434:5432'
+    volumes:
+      - db-data-subscription:/var/lib/postgresql/data
+
 volumes:
   db-data-user:
     driver: local
 
   db-data-pedal:
+    driver: local
+
+  db-data-subscription:
     driver: local
