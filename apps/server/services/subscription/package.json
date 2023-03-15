@@ -9,7 +9,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate",
-    "db:seed": "tsnd ./prisma/seed.ts"
+    "db:push": "prisma db push --skip-generate"
   }
 }
