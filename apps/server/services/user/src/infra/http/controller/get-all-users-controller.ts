@@ -7,8 +7,6 @@ export class GetAllUsersController {
   ){}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email } = request.body
-
     try {
       const users = await this.getAllUsersUseCase.execute()
       return response.status(200).json(users);
