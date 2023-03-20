@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { UserProps as User } from "../../../application/entities/user";
+import { UserProps } from "../../../application/entities/user";
 import { UsersRepository } from "../../../application/repositories/users-repository";
+
+type User = UserProps
 
 export class PrismaUsersRepository implements UsersRepository {
   constructor(
@@ -43,7 +45,7 @@ export class PrismaUsersRepository implements UsersRepository {
       where: {
         id
       }
-    }).then()
+    })
   }
 
   async findMany(): Promise<User[]> {
@@ -55,6 +57,6 @@ export class PrismaUsersRepository implements UsersRepository {
       where: {
         email
       }
-    }).then()
+    })
   }
 }

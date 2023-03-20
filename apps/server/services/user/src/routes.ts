@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createUserController } from "./application/use-cases/create-user";
 import { getAllUsersController } from "./application/use-cases/get-all-users";
+import { getUserByEmailController } from "./application/use-cases/get-user-by-email";
 import { saveUserController } from "./application/use-cases/save-user";
 
 const router = Router()
@@ -11,6 +12,10 @@ router.get('/users', (request, response) => {
 
 router.post('/users', (request, response) => {
   return createUserController.handle(request, response)
+})
+
+router.post('/users/email', (request, response) => {
+  return getUserByEmailController.handle(request, response)
 })
 
 router.put('/users/:id', (request, response) => {
