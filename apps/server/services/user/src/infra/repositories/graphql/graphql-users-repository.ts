@@ -46,7 +46,7 @@ export class GraphQLUsersRepository implements UsersRepository {
     })
   }
 
-  @Query(returns => [UserModel || null])
+  @Query(returns => UserModel, { name: 'findByEmail', nullable: true })
   async findByEmail(@Arg("email") email: string): Promise<User | null>  {
     return await this.prisma.user.findUnique({
       where: {
@@ -55,7 +55,7 @@ export class GraphQLUsersRepository implements UsersRepository {
     })
   }
 
-  @Query(returns => [UserModel])
+  @Query(returns => UserModel, { name: 'findUnique', nullable: true })
   async findUnique(id: string): Promise<User | null> {
     return await this.prisma.user.findUnique({
       where: {
