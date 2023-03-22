@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { Query, Resolver } from "type-graphql";
-import { UserProps } from "../../../application/entities/user";
+import { Arg, Query, Resolver } from "type-graphql";
+import { UserProps as User } from "../../../application/entities/user";
 import { UserModel } from "../../../application/model/user";
 import { UsersRepository } from "../../../application/repositories/users-repository";
 
@@ -16,22 +16,51 @@ export class GraphQLUsersRepository implements UsersRepository {
   }
 
   async remove(id: string): Promise<void> {
-    
+    await this.prisma.user.delete({
+      where: {
+        id
+      }
+    })
   }
 
-  async create(user: UserProps): Promise<void> {
-    
+  async create(user: User): Promise<void> {
+    await this.prisma.user.create({
+      data: {
+        id: user!.id,
+        name: user!.name,
+        email: user!.email,
+        createdAt: new Date()
+      }
+    });
   }
 
-  async save(user: UserProps): Promise<void> {
-    
+  async save(user: User): Promise<void> {
+    await this.prisma.user.update({
+      data: {
+        email: user.email,
+        name: user.name
+      },
+      where: {
+        id: user.id
+      }
+    })
   }
 
-  async findByEmail(email: string): Promise<UserProps | null> {
-    return null
+  @Query(returns => [UserModel || null])
+  async findByEmail(@Arg("email") email: string): Promise<User | null>  {
+    return await this.prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
   }
 
-  async findUnique(id: string): Promise<UserProps | null> {
-    return null
+  @Query(returns => [UserModel])
+  async findUnique(id: string): Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        id
+      }
+    })
   }
 }
