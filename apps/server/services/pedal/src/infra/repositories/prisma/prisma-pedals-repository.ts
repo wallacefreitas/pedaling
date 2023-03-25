@@ -1,10 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { Pedal } from "../../../application/entities/pedal";
+import { PedalProps } from "../../../application/entities/pedal";
 import { PedalsRepository } from "../../../application/repositories/pedals-repository";
+import { RedisService } from "../../services/redis";
+
+type Pedal = PedalProps
 
 export class PrismaPedalsRepository implements PedalsRepository {
   constructor(
-    private prisma = new PrismaClient()
+    private prisma = new PrismaClient(),
+    private redisClient = new RedisService()
   ){}
 
   async create(pedal: Pedal): Promise<void> {
@@ -15,9 +19,9 @@ export class PrismaPedalsRepository implements PedalsRepository {
         startDate: pedal.startDate,
         startDateRegistration: pedal.startDateRegistration,
         endDateRegistration: pedal.endDateRegistration,
-        additionalInformation: pedal.additionalInformation,
+        additionalInformation: pedal.additionalInformation || '',
         startPlace: pedal.startPlace,
-        participantsLimit: pedal.participantsLimit
+        participantsLimit: pedal.participantsLimit || 0
       }
     });
   }
@@ -29,7 +33,7 @@ export class PrismaPedalsRepository implements PedalsRepository {
         startDate: pedal.startDate,
         startDateRegistration: pedal.startDateRegistration,
         endDateRegistration: pedal.endDateRegistration,
-        additionalInformation: pedal.additionalInformation,
+        additionalInformation: pedal.additionalInformation || '',
         startPlace: pedal.startPlace,
         participantsLimit: pedal.participantsLimit
       },
@@ -56,6 +60,13 @@ export class PrismaPedalsRepository implements PedalsRepository {
   }
 
   async findMany(): Promise<Pedal[]> {
-    return await this.prisma.pedal.findMany()
+    const pedalsRedis = await this.redisClient.getValue('pedals') || ''
+  
+    if (pedalsRedis) return JSON.parse(pedalsRedis);
+
+    const pedals = await this.prisma.pedal.findMany()
+    this.redisClient.setValue('pedals', JSON.stringify(pedals))
+
+    return pedals
   }
 }

@@ -1,11 +1,20 @@
-import { createClient } from 'redis'
+import RedisClient from '@redis/client/dist/lib/client';
+import { createClient, RedisClientType } from 'redis'
 
 export class RedisService {
-  private redisClient;
+  private redisClient: RedisClientType;
 
   constructor() {
-    this.redisClient = createClient()
-    this.redisClient.on('connect', () => {
+    this.init()
+  }
+
+  async init() {
+    this.redisClient = createClient({
+      url: 'redis://:eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81@localhost:6379',
+    })
+    
+    await this.redisClient.connect();
+    await this.redisClient.on('connect', () => {
       console.log('connected')
     })
   }

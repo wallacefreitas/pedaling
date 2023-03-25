@@ -1,4 +1,4 @@
-import { Pedal } from "../../entities/pedal";
+import { PedalProps as Pedal } from "../../entities/pedal";
 import { PedalsRepository } from "../../repositories/pedals-repository";
 
 type GetAllPedalsResponse = Pedal[]
