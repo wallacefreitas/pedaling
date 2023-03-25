@@ -8,7 +8,7 @@ export class GetUserByEmailController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { email } = request.body;
-
+    
     try {
       const users = await this.getUserByEmailUseCase.execute(email)
       return response.status(200).json(users);
