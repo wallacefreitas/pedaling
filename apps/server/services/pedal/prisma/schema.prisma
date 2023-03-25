@@ -18,7 +18,7 @@ model Pedal {
   endDateRegistration   DateTime @map("end_date_registration")
   additionalInformation String   @map("additional_information")
   startPlace            String   @map("start_place")
-  participantsLimit     BigInt   @map("participants_limit")
+  participantsLimit     Int      @map("participants_limit")
 
   @@map("pedal")
 }
