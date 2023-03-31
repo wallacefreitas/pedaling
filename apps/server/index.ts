@@ -19,7 +19,7 @@ async function main() {
 
   const { url } = await server.listen()
 
-  console.log(`Server running on ${url}`)
+  console.log(`🚀 🚀 Server running on ${url}`)
 }
 
 main();
