@@ -11,8 +11,8 @@ export class Subscription {
 
   constructor(props: SubscriptionProps) {
     const subscriptionSchema = z.object({
-      rideId: z.string(),
-      userId: z.string(),
+      rideId: z.string().nonempty(),
+      userId: z.string().nonempty(),
       subscriptionDate: z.date()
     })
 
