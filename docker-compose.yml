@@ -1,37 +1,15 @@
 version: '3.9'
 services:
-  user-db:
+  db:
     image: postgres:14.1-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pedaling_user_db
+      - POSTGRES_DB=pedaling_db
     ports:
       - '5432:5432'
     volumes:
-      - db-data-user:/var/lib/postgresql/data
-
-  pedal-db:
-    image: postgres:14.1-alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pedaling_pedal_db
-    ports:
-      - '5433:5432'
-    volumes:
-      - db-data-pedal:/var/lib/postgresql/data
-
-  subscription-db:
-    image: postgres:14.1-alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pedaling_subscription_db
-    ports:
-      - '5434:5432'
-    volumes:
-      - db-data-subscription:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
 
   cache:
     image: redis:6.2-alpine
@@ -43,13 +21,7 @@ services:
       - cache:/data
 
 volumes:
-  db-data-user:
-    driver: local
-
-  db-data-pedal:
-    driver: local
-
-  db-data-subscription:
+  db:
     driver: local
 
   cache:
