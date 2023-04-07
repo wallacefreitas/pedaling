@@ -17,6 +17,5 @@ export class GetUserByEmailController {
         message: err.message || 'Unexpected error.'
       })
     }
-    
   }
 }

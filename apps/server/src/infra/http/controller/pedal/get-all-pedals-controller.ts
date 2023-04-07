@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetAllPedals } from "../../../application/use-cases/get-all-pedals/get-all-pedals"
+import { GetAllPedals } from "../../../../application/use-cases/pedal/get-all-pedals/get-all-pedals"
 
 export class GetAllPedalsController {
   constructor(

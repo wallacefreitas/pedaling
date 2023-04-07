@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RemovePedal} from "../../../application/use-cases/remove-pedal/remove-pedal";
+import { RemovePedal} from "../../../../application/use-cases/pedal/remove-pedal/remove-pedal";
 
 export class RemovePedalController {
   constructor(

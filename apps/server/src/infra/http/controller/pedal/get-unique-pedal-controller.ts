@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetUniquePedal } from "../../../application/use-cases/get-unique-pedal/get-unique-pedal"
+import { GetUniquePedal } from "../../../../application/use-cases/pedal/get-unique-pedal/get-unique-pedal"
 
 export class GetUniquePedalController {
   constructor(
