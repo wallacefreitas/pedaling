@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetUserByEmail } from "../../../application/use-cases/get-user-by-email/get-user-by-email";
+import { GetUserByEmail } from "../../../../application/use-cases/user/get-user-by-email/get-user-by-email";
 
 export class GetUserByEmailController {
   constructor(

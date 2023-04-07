@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RemoveUser } from "../../../application/use-cases/remove-user/remove-user";
+import { RemoveUser } from "../../../../application/use-cases/user/remove-user/remove-user";
 
 export class RemoveUserController {
   constructor(

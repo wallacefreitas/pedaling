@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SaveUser } from "../../../application/use-cases/save-user/save-user";
+import { SaveUser } from "../../../../application/use-cases/user/save-user/save-user";
 
 export class SaveUserController {
   constructor(

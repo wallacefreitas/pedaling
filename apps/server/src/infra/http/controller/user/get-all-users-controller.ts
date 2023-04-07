@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetAllUsers } from "../../../application/use-cases/get-all-users/get-all-users";
+import { GetAllUsers } from "../../../../application/use-cases/user/get-all-users/get-all-users";
 
 export class GetAllUsersController {
   constructor(
