@@ -1,4 +1,4 @@
-import { setYear, parseISO} from 'date-fns'
+import { setYear, parseISO } from 'date-fns'
 
 /**
  * Receives "2022-02-26"
