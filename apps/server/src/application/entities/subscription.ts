@@ -1,6 +1,6 @@
 import { z, ZodError } from 'zod';
 
-interface SubscriptionProps {
+export interface SubscriptionProps {
   rideId: string
   userId: string
   subscriptionDate: Date
