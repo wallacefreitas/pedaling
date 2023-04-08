@@ -1,4 +1,4 @@
-import RedisClient from '@redis/client/dist/lib/client';
+import { env } from 'process';
 import { createClient, RedisClientType } from 'redis'
 
 export class RedisService {
@@ -10,7 +10,7 @@ export class RedisService {
 
   async init() {
     this.redisClient = createClient({
-      url: 'redis://:eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81@localhost:6379',
+      url: env.REDIS_URL,
     })
     
     await this.redisClient.connect();
