@@ -8,7 +8,7 @@ const user = {
 }
 
 const jwt = {
-  secret: '6845c17d298d95aa942127bdad2ceb9b',
+  secret: process.env.JWT_SECRET_KEY || "",
   expiresIn: '1d'
 }
 
@@ -36,7 +36,7 @@ export class AuthService {
     }
 
     try {
-      const [, token] = auth.split(' ');
+      const [_, token] = auth.split(' ');
       const tokenDecoded = verify(token, jwt.secret);
 
       if (tokenDecoded) {

@@ -1,4 +1,3 @@
-import { env } from 'process';
 import { createClient, RedisClientType } from 'redis'
 
 export class RedisService {
@@ -10,7 +9,7 @@ export class RedisService {
 
   async init() {
     this.redisClient = createClient({
-      url: env.REDIS_URL,
+      url: process.env.REDIS_URL,
     })
     
     await this.redisClient.connect();
