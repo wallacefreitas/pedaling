@@ -8,23 +8,21 @@ const user = {
 }
 
 const jwt = {
-  secret: process.env.JWT_SECRET_KEY || "",
+  secret: "6845c17d298d95aa942127bdad2ceb9b",
   expiresIn: '1d'
 }
 
 export class AuthService {
   private token: string;
 
-  constructor(username: string, password: string) {
+  public getToken(username: string, password: string) {
     if (username === user.username && password === user.password) {
       this.token = sign({}, jwt.secret, {
         subject: '1',
         expiresIn: jwt.expiresIn
       })
     }
-  }
 
-  public getToken() {
     return this.token
   }
 
