@@ -1,5 +1,5 @@
 {
   "extends": "../../packages/tsconfig/node18.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "**/*.spec.ts"],
   "exclude": ["node_modules"]
 }
