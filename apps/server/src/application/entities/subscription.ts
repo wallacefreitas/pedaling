@@ -13,7 +13,7 @@ export class Subscription {
     const subscriptionSchema = z.object({
       rideId: z.string().nonempty(),
       userId: z.string().nonempty(),
-      subscriptionDate: z.date()
+      subscriptionDate: z.coerce.date()
     })
 
     try {
@@ -21,7 +21,6 @@ export class Subscription {
       this.props = subscription;
 
     } catch(err) {
-
       if (err instanceof ZodError) {
         err.errors.map(error => { throw new Error(error.message) } )
       }
