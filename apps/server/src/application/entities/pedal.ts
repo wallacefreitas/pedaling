@@ -19,20 +19,16 @@ export class Pedal {
     const pedalSchema = z.object({
       id: z.string().uuid(),
       name: z.string().min(1),
-      startDate: z.date(),
-      startDateRegistration: z.date(),
-      endDateRegistration: z.date(),
+      startDate: z.coerce.date(),
+      startDateRegistration: z.coerce.date(),
+      endDateRegistration: z.coerce.date(),
       additionalInformation: z.nullable(z.string()),
       startPlace: z.string(),
-      participantsLimit: z.number()
+      participantsLimit: z.number().default(999)
     })
 
     if (!props.id) {
       props.id = randomUUID()
-    }
-
-    if (!props.participantsLimit) {
-      props.participantsLimit = 0
     }
 
     try {
