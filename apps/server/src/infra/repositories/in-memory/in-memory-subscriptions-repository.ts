@@ -24,7 +24,7 @@ export class InMemorySubscriptionsRepository implements SubscriptionsRepository 
     const users: any[] = []
     
     return {
-      pedal,
+      pedalId,
       users
     }
   }
