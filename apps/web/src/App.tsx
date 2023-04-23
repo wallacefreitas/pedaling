@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="flex items-center h-screen bg-[#F3E8FF]">
+      <div className="flex items-center h-screen bg-[#ADA2FF]">
         <Login />
       </div>
       {/* <h1 className="text-3xl font-bold underline text-red-500">
