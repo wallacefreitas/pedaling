@@ -10,6 +10,7 @@ export class RedisService {
   async init() {
     this.redisClient = createClient({
       url: process.env.REDIS_URL,
+      password: process.env.REDIS_PASSWORD,
     })
     
     await this.redisClient.connect();
