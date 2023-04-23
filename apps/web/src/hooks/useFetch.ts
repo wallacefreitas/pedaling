@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 
-export default function useFetch(url: string) {
-  const [data, setData] = useState({});
+interface IOptionsData {
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  body: object;
+  isFetch: boolean;
+}
+
+export const useFetch = (url: string, options: IOptionsData) => {
+  const [response, setResponse] = useState({} as any);
+  const { body, method, isFetch } = options
 
   useEffect(() => {
-    const data = {
-      username: "admin",
-      password: "admin",
-    }
-
-    const token = fetch(url, {
-      method: "POST",
+    fetch(url, {
+      method,
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     })
     .then(response => response.json())
-    .then(data => setData(data) )
+    .then(data => setResponse(data))
+  }, [isFetch])
 
-  }, [url])
-
-  return [data, setData]
+  return response
 }
