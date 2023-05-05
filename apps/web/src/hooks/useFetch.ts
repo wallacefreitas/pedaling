@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 
-interface IOptionsData {
+interface OptionsProps {
   method: "GET" | "POST" | "PUT" | "DELETE";
-  body: object;
-  isFetch: boolean;
+  body?: object;
+  token?: string;
 }
 
-export const useFetch = (url: string, options: IOptionsData) => {
-  const [response, setResponse] = useState({} as any);
-  const { body, method, isFetch } = options
-
-  useEffect(() => {
-    fetch(url, {
+export const useFetch = (url: string, options: OptionsProps) => {
+  const { body, method, token } = options
+  const executeUseFetchCallback = async () => {
+    return await fetch(url, {
       method,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        ...(token ? { "Authorization": `Bearer ${token}` } : {})
       },
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : null,
     })
     .then(response => response.json())
-    .then(data => setResponse(data))
-  }, [isFetch])
+    .then(data => data)
+  }
 
-  return response
+  return useCallback(async () => {
+    return await executeUseFetchCallback()
+  }, [])
 }
