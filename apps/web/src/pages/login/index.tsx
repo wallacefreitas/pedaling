@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch"
-import { useLoginStore } from "../../store/useLoginStore";
+import { useUserStore } from "../../store/useUserStore";
 import image from "../../assets/images/cover.avif"
 
 interface LoginData {
@@ -11,23 +11,26 @@ interface LoginData {
 
 export default function Login() {
   const [data, setData] = useState({} as LoginData);
-  const [isFetch, setIsFetch] = useState(false);
   const navigate = useNavigate();
-  const { setToken } = useLoginStore();
-  const response = useFetch('http://localhost:3001/auth', {
+  const { setUser } = useUserStore();
+  const login = useFetch('http://localhost:3001/auth', {
     method: "POST",
-    body: data,
-    isFetch
+    body: data
   })
 
-  function handleSignIn(evt: React.FormEvent<HTMLFormElement>) {
+  async function handleSignIn(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     if( data.username !== "" && data.password !== "" ) {
-      setIsFetch(true)
+      const response = await login();
 
       if(response?.token) {
-        setToken(response?.token);
+        setUser({
+          username: "admin",
+          admin: true,
+          token: response?.token
+        });
+        
         return navigate("/")
       }
     }
