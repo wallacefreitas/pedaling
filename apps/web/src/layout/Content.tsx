@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Sidebar from "../components/Sidebar";
 
 interface ContentProps {
   children: ReactNode
@@ -7,9 +6,8 @@ interface ContentProps {
 
 export default function Content({ children }: ContentProps) {
   return (
-    <main className="flex h-full bg-[#FCECDD] w-full border-2 border-purple-700">
-      <Sidebar />
+    <section className={`flex h-full bg-[#FCECDD] dark:bg-[#1C1C28] w-full border-2 border-purple-700 p-4`}>
       {children}
-    </main>
+    </section>
     )
 }
