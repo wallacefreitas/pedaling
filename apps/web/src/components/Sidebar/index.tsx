@@ -1,10 +1,10 @@
 export default function Sidebar() {
   return (
-    <div className="w-1/5 border-2 border-red-500">
+    <aside className="flex w-56 border-2 dark:bg-[#22222E] border-red-500">
       <ul className="list-none">
         <li>Dashboard</li>
         <li>Pedalings</li>
       </ul>
-    </div>
+    </aside>
   )
 }
