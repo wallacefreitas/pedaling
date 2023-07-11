@@ -4,6 +4,7 @@ export default function Sidebar() {
       <ul className="list-none">
         <li>Dashboard</li>
         <li>Pedalings</li>
+        <li>Logout</li>
       </ul>
     </aside>
   )
