@@ -10,6 +10,7 @@ export default function Home() {
         <Card active />
         <Card />
         <Card />
+        <Card />
       </section>
     </div>
   )
